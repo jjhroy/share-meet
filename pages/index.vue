@@ -1,12 +1,10 @@
 <template>
   <div class="container">
-    <Typer text="欢迎使用打字机效果" />
+    <TyperBase text="欢迎使用打字机效果" />
   </div>
 </template>
 
-<script setup lang="ts">
-  import Typer from '~/components/Typer/Typer.vue';
-</script>
+<script setup lang="ts"></script>
 
 <style>
   .container {
