@@ -1,7 +1,6 @@
 <template>
-  <div>
+  <div class="flex-in-col min-h-screen">
     <NuxtRouteAnnouncer />
-    <!-- <NuxtWelcome /> -->
     <NuxtLayout>
       <NuxtPage />
     </NuxtLayout>

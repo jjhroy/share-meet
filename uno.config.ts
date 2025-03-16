@@ -1,7 +1,7 @@
-import { defineConfig, presetTypography } from 'unocss';
+import { defineConfig, presetTypography, presetWind4 } from 'unocss';
 
 export default defineConfig({
-  presets: [presetTypography()],
+  presets: [presetTypography(), presetWind4],
   shortcuts: {
     'flex-in-row': 'flex flex-row justify-start items-center',
     'flex-in-end': 'flex flex-row justify-end items-center',
