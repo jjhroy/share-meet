@@ -6,3 +6,15 @@
     </NuxtLayout>
   </div>
 </template>
+
+<script setup>
+  useHead({
+    script: [
+      {
+        src: 'https://app.val.qq.com/jsapi/mval.js',
+        async: true,
+        defer: true,
+      },
+    ],
+  });
+</script>
