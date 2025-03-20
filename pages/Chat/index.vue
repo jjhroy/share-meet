@@ -1,69 +1,67 @@
 <template>
   <div class="flex flex-col h-screen bg-gray-100">
     <!-- 主内容区域 -->
-    <div class="flex-1 overflow-hidden">
-      <div class="h-full mx-auto w-[95%] md:w-600px">
-        <VirtualList
-          :data="moments"
-          :item-height="180"
-          :buffer-size="5"
-        >
-          <template #default="{ item }">
-            <div class="bg-white rounded-lg mb-4 p-4 shadow-sm">
-              <!-- 用户信息 -->
-              <div class="flex items-start">
-                <img
-                  :src="item.avatar"
-                  class="w-12 h-12 rounded-full object-cover"
-                />
-                <div class="ml-3 flex-1">
-                  <div class="text-[#576b95] font-bold">{{ item.username }}</div>
-                  <div class="text-gray-800 mt-2 text-sm leading-normal">{{ item.content }}</div>
+    <div class="h-full mx-auto w-[95%] md:w-600px">
+      <VirtualList
+        :data="moments"
+        :item-height="180"
+        :buffer-size="5"
+      >
+        <template #default="{ item }">
+          <div class="bg-white rounded-lg mb-4 p-4 shadow-sm">
+            <!-- 用户信息 -->
+            <div class="flex items-start">
+              <img
+                :src="item.avatar"
+                class="w-12 h-12 rounded-full object-cover"
+              />
+              <div class="ml-3 flex-1">
+                <div class="text-[#576b95] font-bold">{{ item.username }}</div>
+                <div class="text-gray-800 mt-2 text-sm leading-normal">{{ item.content }}</div>
 
-                  <!-- 图片区域 -->
+                <!-- 图片区域 -->
+                <div
+                  v-if="item.images && item.images.length"
+                  class="mt-3 grid grid-cols-3 gap-2"
+                >
                   <div
-                    v-if="item.images && item.images.length"
-                    class="mt-3 grid grid-cols-3 gap-2"
+                    v-for="(img, imgIndex) in item.images"
+                    :key="imgIndex"
+                    class="cursor-pointer relative"
+                    @click="openPreview(item.images, imgIndex)"
                   >
-                    <div
-                      v-for="(img, imgIndex) in item.images"
-                      :key="imgIndex"
-                      class="cursor-pointer relative"
-                      @click="openPreview(item.images, imgIndex)"
-                    >
-                      <img
-                        :src="img"
-                        class="w-full h-24 object-cover rounded-md"
-                      />
-                    </div>
+                    <img
+                      :src="img"
+                      class="w-full h-24 object-cover rounded-md"
+                    />
                   </div>
+                </div>
 
-                  <!-- 时间和操作区域 -->
-                  <div class="mt-3 flex items-center justify-between text-gray-400 text-xs">
-                    <span>{{ item.time }}</span>
-                    <div class="flex items-center space-x-4">
-                      <button class="flex items-center">
-                        <Icon
-                          name="mdi:thumb-up-outline"
-                          class="mr-1 w-4 h-4"
-                        />
-                        <span>{{ item.likes }}</span>
-                      </button>
-                      <button class="flex items-center">
-                        <Icon
-                          name="mdi:chat-outline"
-                          class="mr-1 w-4 h-4"
-                        />
-                        <span>{{ item.comments }}</span>
-                      </button>
-                    </div>
+                <!-- 时间和操作区域 -->
+                <div class="mt-3 flex items-center justify-between text-gray-400 text-xs">
+                  <span>{{ item.time }}</span>
+                  <div class="flex items-center space-x-4">
+                    <button class="flex items-center">
+                      <Icon
+                        name="mdi:thumb-up-outline"
+                        class="mr-1 w-4 h-4"
+                      />
+                      <span>{{ item.likes }}</span>
+                    </button>
+                    <button class="flex items-center">
+                      <Icon
+                        name="mdi:chat-outline"
+                        class="mr-1 w-4 h-4"
+                      />
+                      <span>{{ item.comments }}</span>
+                    </button>
                   </div>
                 </div>
               </div>
             </div>
-          </template>
-        </VirtualList>
-      </div>
+          </div>
+        </template>
+      </VirtualList>
     </div>
 
     <!-- 图片预览弹窗 -->
@@ -175,14 +173,3 @@
     }
   };
 </script>
-
-<style>
-  .vue-recycle-scroller {
-    position: relative;
-  }
-
-  .vue-recycle-scroller__item-wrapper {
-    position: absolute;
-    width: 100%;
-  }
-</style>

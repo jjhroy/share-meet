@@ -1,5 +1,5 @@
 <template>
-  <main class="flex-grow bg-gray-100">
+  <main class="flex-grow bg-gray-100 p-3">
     <slot></slot>
   </main>
 </template>
